@@ -1,5 +1,5 @@
 import React from 'react';
-import { Building2, Zap, ChevronLeft, MoreVertical } from 'lucide-react';
+import { Building2, Zap } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { useLanguage } from '../context/LanguageContext';
 import DashboardSection from './sections/DashboardSection';
@@ -8,12 +8,10 @@ import TikTokSection from './sections/TikTokSection';
 import SearchSection from './sections/SearchSection';
 import DepositsSection from './sections/DepositsSection';
 import WithdrawalsSection from './sections/WithdrawalsSection';
-import MobileHeader from './ui/MobileHeader';
 
 const MainContent: React.FC = () => {
   const { activeSection, activeTeam, sidebarCollapsed } = useApp();
   const { t } = useLanguage();
-  const [showTeamSwitcher, setShowTeamSwitcher] = React.useState(false);
 
   const renderSection = () => {
     switch (activeSection) {
@@ -77,21 +75,11 @@ const MainContent: React.FC = () => {
   };
 
   return (
-    <div className={`flex-1 flex flex-col min-h-screen full-height transition-all duration-300 ${
-      sidebarCollapsed ? 'lg:ml-0' : 'lg:ml-0'
+    <div className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ${
+      sidebarCollapsed ? 'md:ml-0' : 'md:ml-0'
     }`}>
-      {/* Mobile Header */}
-      <div className="lg:hidden">
-        <MobileHeader 
-          title={getSectionTitle()}
-          activeTeam={activeTeam}
-          showTeamSwitcher={showTeamSwitcher}
-          onToggleTeamSwitcher={() => setShowTeamSwitcher(!showTeamSwitcher)}
-        />
-      </div>
-
       {/* Header */}
-      <div className="hidden lg:block bg-white/80 backdrop-blur-md border-b border-neutral-200 px-6 py-5 shadow-soft">
+      <div className="bg-white/80 backdrop-blur-md border-b border-neutral-200 px-6 py-5 shadow-soft">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className={`w-3 h-3 rounded-full ${activeTeam === 'Team Hotel' ? 'bg-primary-500 shadow-glow' : 'bg-secondary-500 shadow-glow-orange'} animate-pulse-subtle`}></div>
@@ -116,7 +104,7 @@ const MainContent: React.FC = () => {
         </div>
         
         {/* Team Context Warning Bar */}
-        <div className={`mt-4 px-5 py-3 rounded-xl ${activeTeam === 'Team Hotel' ? 'bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200' : 'bg-gradient-to-r from-secondary-50 to-secondary-100 border border-secondary-200'} backdrop-blur-sm transition-all duration-300`}>
+        <div className={`mt-4 px-5 py-3 rounded-xl ${activeTeam === 'Team Hotel' ? 'bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200' : 'bg-gradient-to-r from-secondary-50 to-secondary-100 border border-secondary-200'} backdrop-blur-sm`}>
           <div className="flex items-center justify-between text-sm">
             <div className={`flex items-center space-x-3 ${activeTeam === 'Team Hotel' ? 'text-primary-800' : 'text-secondary-800'}`}>
               <div className={`w-5 h-5 rounded-full ${activeTeam === 'Team Hotel' ? 'bg-primary-500' : 'bg-secondary-500'} flex items-center justify-center shadow-soft`}>
@@ -124,6 +112,13 @@ const MainContent: React.FC = () => {
               </div>
               <span className="font-semibold">
                 {t('team.allDataEntries')} <strong>{activeTeam === 'Team Hotel' ? t('team.hotel') : t('team.hustle')}</strong>
+          <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${activeTeam === 'Team Hotel' ? 'bg-primary-100' : 'bg-secondary-100'} shadow-soft`}>
+            {activeTeam === 'Team Hotel' ? (
+              <Building2 size={24} className="text-primary-600" />
+            ) : (
+              <Zap size={24} className="text-secondary-600" />
+            )}
+          </div>
               </span>
             </div>
             <div className={`text-xs font-medium ${activeTeam === 'Team Hotel' ? 'text-primary-600' : 'text-secondary-600'}`}>
@@ -134,14 +129,7 @@ const MainContent: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className={`
-        flex-1 overflow-auto scroll-smooth
-        ${activeTeam === 'Team Hotel' ? 'bg-gradient-to-br from-primary-50/50 via-white to-primary-50/30' : 'bg-gradient-to-br from-secondary-50/50 via-white to-secondary-50/30'} 
-        min-h-screen
-        p-4 lg:p-6
-        pb-20 lg:pb-6
-        transition-all duration-300
-      `}>
+      <div className={`flex-1 p-6 overflow-auto ${activeTeam === 'Team Hotel' ? 'bg-gradient-to-br from-primary-50/50 via-white to-primary-50/30' : 'bg-gradient-to-br from-secondary-50/50 via-white to-secondary-50/30'} min-h-screen`}>
         {renderSection()}
       </div>
     </div>

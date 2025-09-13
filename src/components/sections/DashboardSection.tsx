@@ -318,7 +318,7 @@ const DashboardSection: React.FC = () => {
         </div>
       </div>
       {/* Key Metrics */}
-      <div className="mobile-grid mobile-grid-1 sm:mobile-grid-2 lg:mobile-grid-4 animate-fade-in">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in">
         <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-soft border border-neutral-200 hover:shadow-medium transition-all duration-300 hover:-translate-y-1 group">
           <div className="flex items-center justify-between">
             <div>
@@ -334,7 +334,7 @@ const DashboardSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="mobile-card hover:shadow-medium transition-all duration-300 hover:-translate-y-1 group">
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-soft border border-neutral-200 hover:shadow-medium transition-all duration-300 hover:-translate-y-1 group">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-neutral-600 text-sm font-medium">{t('dashboard.totalShops')}</p>
@@ -349,7 +349,7 @@ const DashboardSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="mobile-card hover:shadow-medium transition-all duration-300 hover:-translate-y-1 group">
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-soft border border-neutral-200 hover:shadow-medium transition-all duration-300 hover:-translate-y-1 group">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-neutral-600 text-sm font-medium">{t('dashboard.totalDeposits')}</p>
@@ -364,7 +364,7 @@ const DashboardSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="mobile-card hover:shadow-medium transition-all duration-300 hover:-translate-y-1 group">
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-soft border border-neutral-200 hover:shadow-medium transition-all duration-300 hover:-translate-y-1 group">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-neutral-600 text-sm font-medium">{t('dashboard.totalWithdrawals')}</p>
@@ -381,9 +381,9 @@ const DashboardSection: React.FC = () => {
       </div>
 
       {/* Team Comparison */}
-      <div className="mobile-grid mobile-grid-1 lg:mobile-grid-2 animate-slide-up">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-slide-up">
         {/* Team Hotel */}
-        <div className="mobile-card border-primary-200 overflow-hidden hover:shadow-medium transition-all duration-300 hover:-translate-y-1">
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-soft border border-primary-200 overflow-hidden hover:shadow-medium transition-all duration-300 hover:-translate-y-1">
           <div className="bg-gradient-to-r from-primary-500 to-primary-600 p-6 text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
             <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full -translate-y-10 translate-x-10"></div>
@@ -399,8 +399,8 @@ const DashboardSection: React.FC = () => {
               <div className="w-3 h-3 bg-white rounded-full animate-pulse-subtle relative z-10"></div>
             </div>
           </div>
-          <div className="p-4 lg:p-6 space-y-4 lg:space-y-5">
-            <div className="mobile-grid mobile-grid-2">
+          <div className="p-6 space-y-5">
+            <div className="grid grid-cols-2 gap-4">
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary-600">{stats.teams.hotel.agents}</div>
                 <div className="text-sm text-neutral-600 font-medium">{t('dashboard.agents')}</div>
@@ -437,7 +437,7 @@ const DashboardSection: React.FC = () => {
         </div>
 
         {/* Team Hustle */}
-        <div className="mobile-card border-secondary-200 overflow-hidden hover:shadow-medium transition-all duration-300 hover:-translate-y-1">
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-soft border border-secondary-200 overflow-hidden hover:shadow-medium transition-all duration-300 hover:-translate-y-1">
           <div className="bg-gradient-to-r from-secondary-500 to-secondary-600 p-6 text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
             <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full -translate-y-10 translate-x-10"></div>
@@ -453,8 +453,8 @@ const DashboardSection: React.FC = () => {
               <div className="w-3 h-3 bg-white rounded-full animate-pulse-subtle relative z-10"></div>
             </div>
           </div>
-          <div className="p-4 lg:p-6 space-y-4 lg:space-y-5">
-            <div className="mobile-grid mobile-grid-2">
+          <div className="p-6 space-y-5">
+            <div className="grid grid-cols-2 gap-4">
               <div className="text-center">
                 <div className="text-3xl font-bold text-secondary-600">{stats.teams.hustle.agents}</div>
                 <div className="text-sm text-neutral-600 font-medium">{t('dashboard.agents')}</div>
@@ -492,9 +492,9 @@ const DashboardSection: React.FC = () => {
       </div>
 
       {/* App Performance & Position Breakdown */}
-      <div className="mobile-grid mobile-grid-1 lg:mobile-grid-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* App Performance */}
-        <div className="mobile-card">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
             <BarChart3 size={20} className="mr-2" />
             {t('dashboard.appPerformance')}
@@ -532,7 +532,7 @@ const DashboardSection: React.FC = () => {
         </div>
 
         {/* Position Breakdown */}
-        <div className="mobile-card">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
             <PieChart size={20} className="mr-2" />
             {t('dashboard.agentPositions')}
@@ -560,9 +560,9 @@ const DashboardSection: React.FC = () => {
       </div>
 
       {/* Top Performers & Recent Activity */}
-      <div className="mobile-grid mobile-grid-1 lg:mobile-grid-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Top Performing Agents */}
-        <div className="mobile-card">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
             <Award size={20} className="mr-2" />
             {t('dashboard.topPerformers')}
@@ -597,12 +597,12 @@ const DashboardSection: React.FC = () => {
         </div>
 
         {/* Recent Activity */}
-        <div className="mobile-card">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
             <Activity size={20} className="mr-2" />
             {t('dashboard.recentActivity')}
           </h3>
-          <div className="space-y-3 max-h-80 overflow-y-auto scroll-smooth">
+          <div className="space-y-3 max-h-80 overflow-y-auto">
             {recentActivity.length === 0 ? (
               <p className="text-gray-500 text-center py-4">{t('dashboard.noRecentTransactions')}</p>
             ) : (

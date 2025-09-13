@@ -223,8 +223,8 @@ const AgentsSection: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Summary Cards */}
-      <div className="mobile-grid mobile-grid-2 sm:mobile-grid-3 lg:mobile-grid-5 mb-6">
-        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl p-4 text-white hover:scale-105 transition-all duration-300 micro-bounce">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl p-4 text-white">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-yellow-100 text-sm">{t('cards.teamLeaders')}</p>
@@ -233,7 +233,7 @@ const AgentsSection: React.FC = () => {
             <Crown size={24} className="text-yellow-200" />
           </div>
         </div>
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl p-4 text-white hover:scale-105 transition-all duration-300 micro-bounce">
+        <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl p-4 text-white">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-100 text-sm">{t('cards.eliteChatters')}</p>
@@ -242,7 +242,7 @@ const AgentsSection: React.FC = () => {
             <Star size={24} className="text-purple-200" />
           </div>
         </div>
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-4 text-white hover:scale-105 transition-all duration-300 micro-bounce">
+        <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-4 text-white">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-100 text-sm">{t('cards.regularChatters')}</p>
@@ -251,7 +251,7 @@ const AgentsSection: React.FC = () => {
             <UserCheck size={24} className="text-blue-200" />
           </div>
         </div>
-        <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-xl p-4 text-white hover:scale-105 transition-all duration-300 micro-bounce">
+        <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-xl p-4 text-white">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-red-100 text-sm">{t('cards.spammers')}</p>
@@ -260,7 +260,7 @@ const AgentsSection: React.FC = () => {
             <Zap size={24} className="text-red-200" />
           </div>
         </div>
-        <div className="bg-gradient-to-r from-pink-500 to-pink-600 rounded-xl p-4 text-white hover:scale-105 transition-all duration-300 micro-bounce">
+        <div className="bg-gradient-to-r from-pink-500 to-pink-600 rounded-xl p-4 text-white">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-pink-100 text-sm">{t('cards.models')}</p>
@@ -272,8 +272,8 @@ const AgentsSection: React.FC = () => {
       </div>
 
       {/* Header Actions */}
-      <div className="flex flex-col space-y-4 lg:flex-row lg:justify-between lg:items-center lg:space-y-0">
-        <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3 w-full lg:w-auto">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
+        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 w-full lg:w-auto">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
             <Input
@@ -281,19 +281,19 @@ const AgentsSection: React.FC = () => {
               placeholder={t('agents.searchAgents')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-3 w-full sm:w-80"
+              className="pl-10 pr-4 py-2 w-full sm:w-80"
             />
           </div>
           <Select
             value={selectedPosition}
             onChange={(e) => setSelectedPosition(e.target.value)}
             options={positionOptions}
-            className="w-full sm:w-52"
+            className="w-full sm:w-48"
           />
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex space-x-2">
           {selectedItems.length > 0 && (
-            <Button variant="outline" onClick={handleDeleteSelected} className="flex items-center space-x-2 haptic-heavy">
+            <Button variant="outline" onClick={handleDeleteSelected} className="flex items-center space-x-2">
               <Trash2 size={16} />
               <span>{t('buttons.deleteSelected')} ({selectedItems.length})</span>
             </Button>
@@ -309,7 +309,7 @@ const AgentsSection: React.FC = () => {
             templateHeaders={getAgentTemplateHeaders()}
             sampleData={getAgentSampleData()}
           />
-          <Button onClick={() => setShowModal(true)} className="flex items-center space-x-2 haptic-medium">
+          <Button onClick={() => setShowModal(true)} className="flex items-center space-x-2">
             <Plus size={20} />
             <span>{t('buttons.addAgent')}</span>
           </Button>
@@ -317,8 +317,8 @@ const AgentsSection: React.FC = () => {
       </div>
 
       {/* Agents Table */}
-      <div className={`mobile-card border ${activeTeam === 'Team Hotel' ? 'border-blue-200' : 'border-orange-200'} overflow-hidden p-0`}>
-        <div className="overflow-x-auto scroll-smooth">
+      <div className={`bg-white rounded-xl shadow-sm border ${activeTeam === 'Team Hotel' ? 'border-blue-200' : 'border-orange-200'} overflow-hidden`}>
+        <div className="overflow-x-auto">
           <table className="w-full">
             <thead className={`${activeTeam === 'Team Hotel' ? 'bg-blue-50' : 'bg-orange-50'}`}>
               <tr>
@@ -327,7 +327,7 @@ const AgentsSection: React.FC = () => {
                     type="checkbox"
                     onChange={handleSelectAll}
                     checked={paginatedAgents.length > 0 && selectedItems.length === paginatedAgents.length}
-                    className={`rounded border-gray-300 ${activeTeam === 'Team Hotel' ? 'text-blue-600 focus:ring-blue-500' : 'text-orange-600 focus:ring-orange-500'} touch-target`}
+                    className={`rounded border-gray-300 ${activeTeam === 'Team Hotel' ? 'text-blue-600 focus:ring-blue-500' : 'text-orange-600 focus:ring-orange-500'}`}
                   />
                 </th>
                 <th className={`px-6 py-3 text-left text-xs font-medium ${activeTeam === 'Team Hotel' ? 'text-blue-700' : 'text-orange-700'} uppercase tracking-wider`}>
@@ -353,18 +353,18 @@ const AgentsSection: React.FC = () => {
                 </tr>
               ) : (
                 paginatedAgents.map((agent) => (
-                  <tr key={agent.id} className="hover:bg-gray-50 transition-all duration-200 hover:scale-[1.01]">
+                  <tr key={agent.id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4">
                       <input
                         type="checkbox"
                         checked={selectedItems.includes(agent.id)}
                         onChange={() => handleSelectItem(agent.id)}
-                        className={`rounded border-gray-300 ${activeTeam === 'Team Hotel' ? 'text-blue-600 focus:ring-blue-500' : 'text-orange-600 focus:ring-orange-500'} touch-target`}
+                        className={`rounded border-gray-300 ${activeTeam === 'Team Hotel' ? 'text-blue-600 focus:ring-blue-500' : 'text-orange-600 focus:ring-orange-500'}`}
                       />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center space-x-3">
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold ${activeTeam === 'Team Hotel' ? 'bg-blue-500' : 'bg-orange-500'} transition-all duration-300 hover:scale-110`}>
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold ${activeTeam === 'Team Hotel' ? 'bg-blue-500' : 'bg-orange-500'}`}>
                           {agent.name.charAt(0).toUpperCase()}
                         </div>
                         <div>
@@ -385,21 +385,21 @@ const AgentsSection: React.FC = () => {
                       <div className="flex justify-end space-x-2">
                         <button
                           onClick={() => handleViewTransactions(agent.name)}
-                          className="text-indigo-600 hover:text-indigo-900 p-2 rounded-lg hover:bg-indigo-50 transition-all duration-200 touch-target haptic-light"
+                          className="text-indigo-600 hover:text-indigo-900 p-1 rounded"
                           title="View Transactions"
                         >
                           <Eye size={16} />
                         </button>
                         <button
                           onClick={() => handleEdit(agent)}
-                          className="text-blue-600 hover:text-blue-900 p-2 rounded-lg hover:bg-blue-50 transition-all duration-200 touch-target haptic-light"
+                          className="text-blue-600 hover:text-blue-900 p-1 rounded"
                           title="Edit Agent"
                         >
                           <Edit size={16} />
                         </button>
                         <button
                           onClick={() => handleDelete(agent.id)}
-                          className="text-red-600 hover:text-red-900 p-2 rounded-lg hover:bg-red-50 transition-all duration-200 touch-target haptic-medium"
+                          className="text-red-600 hover:text-red-900 p-1 rounded"
                           title="Delete Agent"
                         >
                           <Trash2 size={16} />
@@ -426,7 +426,7 @@ const AgentsSection: React.FC = () => {
       </div>
 
       {/* Add/Edit Agent Modal */}
-      <Modal isOpen={showModal} onClose={closeModal} title={editingAgent ? 'Edit Agent' : 'Add New Agent'} mobileFullScreen>
+      <Modal isOpen={showModal} onClose={closeModal} title={editingAgent ? 'Edit Agent' : 'Add New Agent'}>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Agent Name</label>
@@ -453,11 +453,11 @@ const AgentsSection: React.FC = () => {
               required
             />
           </div>
-          <div className="flex flex-col-reverse sm:flex-row justify-end space-y-reverse space-y-3 sm:space-y-0 sm:space-x-3 pt-6">
-            <Button type="button" variant="outline" onClick={closeModal} className="w-full sm:w-auto">
+          <div className="flex justify-end space-x-3 pt-4">
+            <Button type="button" variant="outline" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="submit" className="w-full sm:w-auto" haptic="heavy">
+            <Button type="submit">
               {editingAgent ? 'Update Agent' : 'Add Agent'}
             </Button>
           </div>
