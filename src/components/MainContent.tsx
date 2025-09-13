@@ -2,6 +2,7 @@ import React from 'react';
 import { Building2, Zap } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { useLanguage } from '../context/LanguageContext';
+import LoadingSpinner from './ui/LoadingSpinner';
 import DashboardSection from './sections/DashboardSection';
 import AgentsSection from './sections/AgentsSection';
 import TikTokSection from './sections/TikTokSection';
@@ -10,7 +11,7 @@ import DepositsSection from './sections/DepositsSection';
 import WithdrawalsSection from './sections/WithdrawalsSection';
 
 const MainContent: React.FC = () => {
-  const { activeSection, activeTeam, sidebarCollapsed } = useApp();
+  const { activeSection, activeTeam, sidebarCollapsed, loading } = useApp();
   const { t } = useLanguage();
 
   const renderSection = () => {
@@ -130,7 +131,16 @@ const MainContent: React.FC = () => {
 
       {/* Content */}
       <div className={`flex-1 p-6 overflow-auto ${activeTeam === 'Team Hotel' ? 'bg-gradient-to-br from-primary-50/50 via-white to-primary-50/30' : 'bg-gradient-to-br from-secondary-50/50 via-white to-secondary-50/30'} min-h-screen`}>
-        {renderSection()}
+        {loading ? (
+          <div className="flex items-center justify-center min-h-96">
+            <div className="text-center">
+              <LoadingSpinner size="lg" className="mx-auto mb-4" />
+              <p className="text-neutral-600 font-medium">{t('common.loading')}</p>
+            </div>
+          </div>
+        ) : (
+          renderSection()
+        )}
       </div>
     </div>
   );
