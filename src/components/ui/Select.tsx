@@ -36,7 +36,7 @@ const Select: React.FC<SelectProps> = ({
         <select
           className={`
             w-full px-4 py-3 text-sm font-medium
-            border-2 border-neutral-200 rounded-xl bg-white
+            border-2 border-neutral-200 rounded-xl bg-white text-neutral-900
             focus:ring-2 focus:ring-offset-0 ${activeTeam === 'Team Hotel' ? 'focus:ring-primary-500 focus:border-primary-500' : 'focus:ring-secondary-500 focus:border-secondary-500'}
             transition-all duration-200
             hover:border-neutral-300 hover:shadow-soft
@@ -48,7 +48,7 @@ const Select: React.FC<SelectProps> = ({
           {...props}
         >
           {options.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option key={option.value} value={option.value} className="text-neutral-900 bg-white">
               {showAppIcons && option.app ? `${option.app} - ${option.label}` : option.label}
             </option>
           ))}

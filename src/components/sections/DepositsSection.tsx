@@ -9,6 +9,7 @@ import Select from '../ui/Select';
 import Pagination from '../ui/Pagination';
 import ExportButton from '../ui/ExportButton';
 import ImportButton from '../ui/ImportButton';
+import SearchableSelect from '../ui/SearchableSelect';
 import { exportToCSV, formatTransactionForExport, getMonthName } from '../../utils/exportUtils';
 import { importTransactions, getTransactionTemplateHeaders, getTransactionSampleData } from '../../utils/importUtils';
 
@@ -412,18 +413,19 @@ const DepositsSection: React.FC = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">{t('table.headers.shopId')}</label>
-            <Select
+            <SearchableSelect
               value={formData.shopId}
-              onChange={(e) => setFormData(prev => ({ ...prev, shopId: e.target.value }))}
+              onChange={(value) => setFormData(prev => ({ ...prev, shopId: value }))}
               showAppIcons={true}
               options={[
-                { value: '', label: `${t('transactions.selectShop')} ${activeTeam}` },
                 ...teamShops.map(shop => ({ 
                   value: shop.shopId, 
                   label: `${shop.shopId} - ${shop.agentName}`,
-                  app: shop.app
+                  app: shop.app,
+                  agent: shop.agentName
                 }))
               ]}
+              placeholder={`${t('transactions.selectShop')} ${activeTeam} or type Shop ID`}
               required
             />
             {teamShops.length === 0 && (
